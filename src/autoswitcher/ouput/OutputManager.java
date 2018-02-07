@@ -4,24 +4,28 @@ import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
-
+import java.util.Random;
 
 /**
- * This can do all the output for this program
- * made to be as humanlike as possible
+ * This can do all the output for this program made to be as humanlike as
+ * possible
+ * 
  * @author No
  *
  */
 public class OutputManager extends Robot {
 
 	private static OutputManager instance;
+	private Random random;
 
 	private OutputManager() throws AWTException {
 		super();
+		random = new Random();
 	}
 
 	/**
 	 * gets the instance of the outputManager
+	 * 
 	 * @return {@link outputManager}
 	 * @throws AWTException
 	 */
@@ -50,8 +54,41 @@ public class OutputManager extends Robot {
 		double distance = oldMousePosition.distance(movePoint);
 		double xdiff = (movePoint.x - oldMousePosition.x) / distance;
 		double ydiff = (movePoint.y - oldMousePosition.y) / distance;
+		int movementDeviation = (int) (Math.abs(random.nextGaussian() * 20) - 10);
+		// gets the movementType
+		if (movementType == MovementType.random) {
+			switch (random.nextInt(2)) {
+			case 0:
+				movementType = MovementType.straight;
+				break;
+
+			case 1:
+				movementType = MovementType.circle;
+				break;
+			case 2:
+				movementType = MovementType.sinus;
+				break;
+			}
+		}
+		// moves the mouse accordingly
 		for (int i = 0; i < distance; i++) {
-			mouseMove((int) (oldMousePosition.x + i * xdiff), (int) (oldMousePosition.y + i * ydiff));
+			switch (movementType) {
+			case straight:
+				mouseMove((int) (oldMousePosition.x + i * xdiff), (int) (oldMousePosition.y + i * ydiff));
+				break;
+			case circle:
+				double rad = distance / 2;
+				double startAngle = getAngle(movePoint, oldMousePosition);
+				mouseMove((int) (oldMousePosition.x + (xdiff * distance / 2) + Math.cos(Math.toRadians(startAngle + (i / distance) * 180)) * rad),
+						(int) (oldMousePosition.y + (ydiff * distance / 2) + Math.sin(Math.toRadians(startAngle + (i / distance) * 180)) * rad));
+				break;
+			case sinus:
+				mouseMove((int) (oldMousePosition.x + xdiff * i + Math.sin(i / distance * Math.PI) * movementDeviation),
+						(int) (oldMousePosition.y + ydiff * i + Math.sin(i / distance * Math.PI) * movementDeviation));
+				break;
+			default:
+				break;
+			}
 			long timeElapsed = System.currentTimeMillis() - startSystemTime;
 			// waits till the movement is on track with the timing again
 			while (timeElapsed < timeToMoveInMs * (i / distance)) {
@@ -61,6 +98,17 @@ public class OutputManager extends Robot {
 		}
 		// this last mousemove is to make sure it goes to the right place
 		mouseMove(movePoint.x, movePoint.y);
+	}
+
+	/**
+	 * calculates the angle between two points
+	 * @param target the point where the mouse needs to go
+	 * @param current the point where the mouse is currently
+	 * @return
+	 */
+	private float getAngle(Point target, Point current) {
+		float angle = (float) Math.toDegrees(Math.atan2(current.y - target.y, current.x - target.x));
+		return angle;
 	}
 
 }
