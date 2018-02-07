@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.util.Random;
 
 /**
@@ -102,13 +103,61 @@ public class OutputManager extends Robot {
 
 	/**
 	 * calculates the angle between two points
-	 * @param target the point where the mouse needs to go
-	 * @param current the point where the mouse is currently
+	 * 
+	 * @param target
+	 *            the point where the mouse needs to go
+	 * @param current
+	 *            the point where the mouse is currently
 	 * @return
 	 */
 	private float getAngle(Point target, Point current) {
 		float angle = (float) Math.toDegrees(Math.atan2(current.y - target.y, current.x - target.x));
 		return angle;
+	}
+
+	/**
+	 * left click on a normal delay between press and release<br>
+	 * delay: 10 + |gaus * 5|
+	 * 
+	 */
+	public void leftClickNormal() {
+		mousePress(InputEvent.BUTTON1_MASK);
+		delay((int) (10 + Math.abs(random.nextGaussian() * 5)));
+		mouseRelease(InputEvent.BUTTON1_MASK);
+	}
+
+	/**
+	 * left click without a delay, tries to release as soon as possible
+	 */
+	public void fastleftClick() {
+		mousePress(InputEvent.BUTTON1_MASK);
+		mouseRelease(InputEvent.BUTTON1_MASK);
+	}
+
+	/**
+	 * releases left click button
+	 */
+	public void fastleftRelease() {
+		mouseRelease(InputEvent.BUTTON1_MASK);
+	}
+
+	/**
+	 * right click on a normal delay between press and release<br>
+	 * delay: 10 + |gaus * 5|
+	 * 
+	 */
+	public void rightClickNormal() {
+		mousePress(InputEvent.BUTTON2_MASK);
+		delay((int) (10 + Math.abs(random.nextGaussian() * 5)));
+		mouseRelease(InputEvent.BUTTON2_MASK);
+	}
+
+	/**
+	 * right click without a delay, tries to release as soon as possible
+	 */
+	public void fastrightClick() {
+		mousePress(InputEvent.BUTTON2_MASK);
+		mouseRelease(InputEvent.BUTTON2_MASK);
 	}
 
 }
