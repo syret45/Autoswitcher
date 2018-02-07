@@ -14,23 +14,29 @@ import java.util.List;
  */
 public class ProcessFinder {
 	private String OSBuddyProcess = "OSBuddy";
-	
-	//Get all processes
-	
-	//Find client process
-	
-	//Get OSBuddy Resolution
-	
-	//Bring forth the client (if is isn't already)
-	
-	//Screenshot the client
-	
-	//Write the screenshot somewhere
-	
+
+	// Get all processes
+
+	// Find client process
+
+	// Get OSBuddy Resolution
+
+	// Bring forth the client (if is isn't already)
+
+	// Screenshot the client
+
+	// Write the screenshot somewhere
+
+	/**
+	 * gets all running processes from task manager
+	 * 
+	 * @return list of strings with all running processes
+	 * @throws IOException
+	 */
 	public List<String> GetAllProcesses() throws IOException {
 		List<String> processes = new ArrayList<String>();
 		String line;
-		
+
 		Process p = Runtime.getRuntime().exec("tasklist.exe /nh");
 		BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		while ((line = input.readLine()) != null) {
@@ -41,15 +47,19 @@ public class ProcessFinder {
 		return processes;
 	}
 
-	public int FindOSBuddyProcessId(List<String> processes) {	
-		for(int i = 0; i < processes.size(); i++) 
-		{
-			if(processes.get(i).startsWith(OSBuddyProcess)) 
-			{
+	/**
+	 * finds the osbuddy process id
+	 * @return PID of osbuddy.exe
+	 * @throws IOException
+	 */
+	public int FindOSBuddyProcessId() throws IOException {
+		List<String> processes = GetAllProcesses();
+		for (int i = 0; i < processes.size(); i++) {
+			if (processes.get(i).startsWith(OSBuddyProcess)) {
 				String OSBuddyProcess[] = processes.get(i).split("\\s+");
 				return Integer.parseInt(OSBuddyProcess[1]);
 			}
 		}
-		return 0;			
+		return 0;
 	}
 }
