@@ -64,9 +64,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 
 	@Override
 	public void nativeMousePressed(NativeMouseEvent e) {
-		if (noDrag) {
-			doNoDrag(e);
-		}
+		
 	}
 
 	@Override
@@ -94,9 +92,10 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	}
 
 	@Override
-	public void nativeMouseDragged(NativeMouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void nativeMouseDragged(NativeMouseEvent e) {
+		if (noDrag) {
+			doNoDrag(e);
+		}
 	}
 
 	@Override
@@ -106,11 +105,14 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	}
 
 	/**
-	 * checks if the nodrag should activate and releases left click when it should
-	 * @param e - the mouseEvent
+	 * checks if the nodrag should activate and releases left click when it
+	 * should
+	 * 
+	 * @param e
+	 *            - the mouseEvent
 	 */
 	private void doNoDrag(NativeMouseEvent e) {
-		//TODO checks for when to nodrag
+		// TODO checks for when to nodrag
 		try {
 			OutputManager.getInstance().fastleftRelease();
 		} catch (AWTException e1) {
