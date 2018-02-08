@@ -1,9 +1,14 @@
 package autoswitcher.ui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+import autoswitcher.input.InputManager;
 
 @SuppressWarnings("serial")
 /**
@@ -35,6 +40,17 @@ public class SettingsScreen extends JFrame{
 	private void addComponents(){
 		//makes the panel to put components on
 		JPanel panel = new JPanel(null);
+		
+		JRadioButton noDragButton = new JRadioButton("No drag");
+		noDragButton.setBounds(20, 20, 200, 20);
+		noDragButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InputManager.getInstance().setNoDrag(noDragButton.isSelected());
+			}
+		});
+		panel.add(noDragButton);
 		
 		add(panel);
 	}
