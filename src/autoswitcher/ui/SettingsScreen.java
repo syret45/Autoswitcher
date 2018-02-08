@@ -20,6 +20,7 @@ public class SettingsScreen extends JFrame{
 	
 	private Dimension ScreenSize = new Dimension(300, 300);
 	private String Title = "OSRS autoSwitcher";
+	private InputManager manager = InputManager.getInstance();
 
 	/**
 	 * constructer it will make all the components on the screen and make the screen visible
@@ -47,7 +48,7 @@ public class SettingsScreen extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				InputManager.getInstance().setNoDrag(noDragButton.isSelected());
+				manager.setNoDrag(noDragButton.isSelected());
 			}
 		});
 		panel.add(noDragButton);
