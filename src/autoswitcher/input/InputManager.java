@@ -64,7 +64,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 
 	@Override
 	public void nativeMousePressed(NativeMouseEvent e) {
-		
+
 	}
 
 	@Override
@@ -113,11 +113,15 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	 */
 	private void doNoDrag(NativeMouseEvent e) {
 		// TODO checks for when to nodrag
-		try {
+		if (e.getModifiers() == 256) {
+			try {
 			OutputManager.getInstance().fastleftRelease();
 		} catch (AWTException e1) {
 			e1.printStackTrace();
 		}
+		}
+		
+
 	}
 
 }
