@@ -165,6 +165,17 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(f4Button);
+		
+		JRadioButton AutoSwitchButton = new JRadioButton("autoSwitch");
+		AutoSwitchButton.setBounds(20, 230, 200, 20);
+		AutoSwitchButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				manager.setAutoswitch(AutoSwitchButton.isSelected());
+			}
+		});
+		panel.add(AutoSwitchButton);
 
 		add(panel);
 	}

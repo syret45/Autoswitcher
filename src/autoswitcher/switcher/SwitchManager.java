@@ -34,6 +34,7 @@ public class SwitchManager {
 	 * @param mouseClick - point of the mouseclick
 	 */
 	public void trySwitch(Point mouseClick) {
+		System.out.println("trying switch");
 		for (FullSwitch fullSwitch : switches) {
 			if (fullSwitch.checkActive(mouseClick)) {
 				fullSwitch.doSwitch();

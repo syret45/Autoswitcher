@@ -31,6 +31,14 @@ public class ItemFinder implements Runnable{
 	public void run() {
 		while(true){
 			try {
+				for (SwitchItem item : items) {
+					if(item.getItemName().equals("dragon axe")){
+						item.setPos(0);
+					}
+					if(item.getItemName().equals("bruma root")){
+						item.setPos(1);
+					}
+				}
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

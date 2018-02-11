@@ -33,6 +33,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private static boolean returnMouse = false;
 	private static boolean noDrag = false;
 	private static boolean f4Barrage = false;
+	private static boolean autoSwitch = false;
 
 	private InputManager() {
 		Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
@@ -71,9 +72,15 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 		returnMouse = active;
 	}
 
+	public void setAutoswitch(boolean active) {
+		autoSwitch = active;
+	}
+
 	@Override
 	public void nativeMouseClicked(NativeMouseEvent e) {
-		switchManager.trySwitch(e.getPoint());
+		if (autoSwitch) {
+			switchManager.trySwitch(e.getPoint());
+		}
 	}
 
 	@Override
@@ -137,16 +144,16 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	/**
 	 * clicks on the barrage when you click f4
 	 */
-	private void dof4Barrage(){
+	private void dof4Barrage() {
 		Point oldMouse = null;
-		if(returnMouse){
+		if (returnMouse) {
 			oldMouse = MouseInfo.getPointerInfo().getLocation();
 		}
-		int barX =(int)( Math.random() * 15) + 13 + overLayLocation.x;
-		int barY =(int)( Math.random() * 15) + 173 + overLayLocation.y;
+		int barX = (int) (Math.random() * 15) + 13 + overLayLocation.x;
+		int barY = (int) (Math.random() * 15) + 173 + overLayLocation.y;
 		outputManager.moveMouseNormal(new Point(barX, barY));
 		outputManager.leftClickNormal();
-		if(oldMouse != null){
+		if (oldMouse != null) {
 			outputManager.moveMouseNormal(oldMouse);
 		}
 	}
