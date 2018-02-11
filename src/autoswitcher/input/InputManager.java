@@ -1,6 +1,7 @@
 package autoswitcher.input;
 
-import java.awt.AWTException;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,7 +86,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) {
-		if(f4Barrage && e.getID() == NativeKeyEvent.VC_F4){
+		if(f4Barrage && e.getKeyCode() == NativeKeyEvent.VC_F4){
 			dof4Barrage();
 		}
 
@@ -130,8 +131,18 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 		}
 	}
 	
+	/**
+	 * clicks on the barrage when you click f4
+	 */
 	private void dof4Barrage(){
-		//TODO make this
+		Point oldMouse = null;
+		if(returnMouse){
+			oldMouse = MouseInfo.getPointerInfo().getLocation();
+		}
+		OutputManager.getInstance().moveMouseNormal(new Point(500, 500));
+		if(oldMouse != null){
+			OutputManager.getInstance().moveMouseNormal(oldMouse);
+		}
 	}
 
 }

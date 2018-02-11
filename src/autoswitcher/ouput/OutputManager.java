@@ -19,6 +19,7 @@ public class OutputManager extends Robot {
 	private static OutputManager instance;
 	private int mouseSpeedMedMs = 100;
 	private int mouseSpeedGaus = 10;
+	private MovementType movementType = MovementType.straight;
 	private Random random;
 
 	private OutputManager() throws AWTException {
@@ -49,36 +50,35 @@ public class OutputManager extends Robot {
 	 * 
 	 * @param movePoint
 	 *            - the point to move the mouse to
-	 * @param movementType
-	 *            -{@link MovementType} for the desired movementype
 	 */
-	public void moveMouseNormal(Point movePoint, MovementType movementType) {
+	public void moveMouseNormal(Point movePoint) {
 		Point oldMousePosition = MouseInfo.getPointerInfo().getLocation();
 		long startSystemTime = System.currentTimeMillis();
 		// calculates the distance between the points
 		double distance = oldMousePosition.distance(movePoint);
 		double xdiff = (movePoint.x - oldMousePosition.x) / distance;
 		double ydiff = (movePoint.y - oldMousePosition.y) / distance;
-		int movementDeviation = (int) (Math.abs(random.nextGaussian() * 20) - 10);
+		int movementDeviation = (int) (Math.abs(random.nextGaussian() * 25) - 10);
 		int timeToMoveInMs = mouseSpeedMedMs + (int) random.nextGaussian() * mouseSpeedGaus;
+		MovementType tempMove = movementType;
 		// gets the movementType
-		if (movementType == MovementType.random) {
+		if (tempMove == MovementType.random) {
 			switch (random.nextInt(2)) {
 			case 0:
-				movementType = MovementType.straight;
+				tempMove = MovementType.straight;
 				break;
 
 			case 1:
-				movementType = MovementType.circle;
+				tempMove = MovementType.circle;
 				break;
 			case 2:
-				movementType = MovementType.sinus;
+				tempMove = MovementType.sinus;
 				break;
 			}
 		}
 		// moves the mouse accordingly
 		for (int i = 0; i < distance; i++) {
-			switch (movementType) {
+			switch (tempMove) {
 			case straight:
 				mouseMove((int) (oldMousePosition.x + i * xdiff), (int) (oldMousePosition.y + i * ydiff));
 				break;
@@ -106,9 +106,22 @@ public class OutputManager extends Robot {
 		mouseMove(movePoint.x, movePoint.y);
 	}
 	
+	/**
+	 * sets the mouse speed for all mouse movements
+	 * @param medMS - medium for the mousespeed
+	 * @param gaus - the gausian for the mousespeed
+	 */
 	public void setMouseSpeed(int medMS , int gaus){
 		mouseSpeedMedMs = medMS;
 		mouseSpeedGaus = gaus;
+	}
+	
+	/**
+	 * sets the movement type for all mouse movements
+	 * @param movementtype - the type of movement {@link MovementType}
+	 */
+	public void setMovementType(MovementType movementtype){
+		this.movementType = movementtype;
 	}
 
 	/**

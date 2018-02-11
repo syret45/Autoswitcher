@@ -4,12 +4,14 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import autoswitcher.input.InputManager;
+import autoswitcher.ouput.MovementType;
 import autoswitcher.ouput.OutputManager;
 
 @SuppressWarnings("serial")
@@ -72,8 +74,20 @@ public class SettingsScreen extends JFrame {
 		});
 		panel.add(mouseGausField);
 
+		JComboBox<MovementType> movementTypeBox = new JComboBox<>(MovementType.values());
+		movementTypeBox.setBounds(20, 80, 100, 20);
+		movementTypeBox.setToolTipText("Sets the way the mouse should move");
+		movementTypeBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				OutputManager.getInstance().setMovementType((MovementType) movementTypeBox.getSelectedItem());
+			}
+		});
+		panel.add(movementTypeBox);
+
 		JRadioButton noDragButton = new JRadioButton("No drag");
-		noDragButton.setBounds(20, 80, 200, 20);
+		noDragButton.setBounds(20, 110, 200, 20);
 		noDragButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -84,7 +98,7 @@ public class SettingsScreen extends JFrame {
 		panel.add(noDragButton);
 
 		JRadioButton returnMouseButton = new JRadioButton("return mouse");
-		returnMouseButton.setBounds(20, 110, 200, 20);
+		returnMouseButton.setBounds(20, 140, 200, 20);
 		returnMouseButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -95,7 +109,7 @@ public class SettingsScreen extends JFrame {
 		panel.add(returnMouseButton);
 
 		JRadioButton f4Button = new JRadioButton("f4 barrage");
-		f4Button.setBounds(20, 140, 200, 20);
+		f4Button.setBounds(20, 170, 200, 20);
 		f4Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -116,4 +130,3 @@ public class SettingsScreen extends JFrame {
 		OutputManager.getInstance().setMouseSpeed(med, gaus);
 	}
 }
-
