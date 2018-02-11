@@ -13,10 +13,12 @@ public class Main {
 
 		new OverlayScreen();
 		new SettingsScreen();
+		/*
 		FullSwitch s = new FullSwitch();
 		s.addItem(new SwitchItem("black dhide body", "Black_d'hide_body.png"));
 		s.addItem(new SwitchItem("rune platelegs", "Rune_platelegs.png"));
 		s.addItem(new SwitchItem("avas accumulator", "Avas_Accumulator.png"));
 		SwitchManager.getInstance().addSwitch(s);
+		*/
 	}
 }

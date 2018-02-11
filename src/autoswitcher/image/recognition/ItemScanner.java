@@ -106,18 +106,5 @@ public class ItemScanner implements Runnable {
 		return (neededCorrectPixels * 0.6 < correctPixels);
 
 	}
-	
-	private void makePicture(BufferedImage img, String name) {
-		File outputfile = new File("C:/Users/No/Desktop/" + name + ".png");
-		try {
-			if (img != null) {
-				ImageIO.write(img, "png", outputfile);
-			} else {
-				System.out.println("nulled");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 }
