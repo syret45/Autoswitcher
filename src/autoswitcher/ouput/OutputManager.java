@@ -59,7 +59,8 @@ public class OutputManager extends Robot {
 		double xdiff = (movePoint.x - oldMousePosition.x) / distance;
 		double ydiff = (movePoint.y - oldMousePosition.y) / distance;
 		int movementDeviation = (int) (Math.abs(random.nextGaussian() * 25) - 10);
-		int timeToMoveInMs = mouseSpeedMedMs + (int) random.nextGaussian() * mouseSpeedGaus;
+		int timeToMoveInMs = mouseSpeedMedMs + (int)(random.nextGaussian() * mouseSpeedGaus);
+		System.out.println(timeToMoveInMs);
 		MovementType tempMove = movementType;
 		// gets the movementType
 		if (tempMove == MovementType.random) {
@@ -112,8 +113,8 @@ public class OutputManager extends Robot {
 	 * @param gaus - the gausian for the mousespeed
 	 */
 	public void setMouseSpeed(int medMS , int gaus){
-		mouseSpeedMedMs = medMS;
-		mouseSpeedGaus = gaus;
+		this.mouseSpeedMedMs = medMS;
+		this.mouseSpeedGaus = gaus;
 	}
 	
 	/**

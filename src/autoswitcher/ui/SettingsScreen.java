@@ -3,6 +3,8 @@ package autoswitcher.ui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -53,11 +55,28 @@ public class SettingsScreen extends JFrame {
 		mouseMedField = new JTextField("100");
 		mouseMedField.setToolTipText("Median of the mouse speed in ms");
 		mouseMedField.setBounds(20, 20, 100, 20);
-		mouseMedField.addActionListener(new ActionListener() {
+		mouseMedField.addKeyListener(new KeyListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				setMouseSpeed();
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try {
+					int med = Integer.parseInt(mouseMedField.getText());
+					int gaus = Integer.parseInt(mouseGausField.getText());
+					setMouseSpeed(med, gaus);
+				} catch (Exception e1) {
+					System.out.println("oops");
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+
 			}
 		});
 		panel.add(mouseMedField);
@@ -65,11 +84,28 @@ public class SettingsScreen extends JFrame {
 		mouseGausField = new JTextField("10");
 		mouseGausField.setToolTipText("gausian of the mouse speed in ms");
 		mouseGausField.setBounds(20, 50, 100, 20);
-		mouseGausField.addActionListener(new ActionListener() {
+		mouseGausField.addKeyListener(new KeyListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				setMouseSpeed();
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try {
+					int med = Integer.parseInt(mouseMedField.getText());
+					int gaus = Integer.parseInt(mouseGausField.getText());
+					setMouseSpeed(med, gaus);
+				} catch (Exception e1) {
+					System.out.println("oops");
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+
 			}
 		});
 		panel.add(mouseGausField);
@@ -122,11 +158,7 @@ public class SettingsScreen extends JFrame {
 		add(panel);
 	}
 
-	private void setMouseSpeed() {
-		int med = 100;
-		int gaus = 10;
-		med = Integer.parseInt(mouseMedField.getText());
-		gaus = Integer.parseInt(mouseGausField.getText());
+	private void setMouseSpeed(int med, int gaus) {
 		OutputManager.getInstance().setMouseSpeed(med, gaus);
 	}
 }
