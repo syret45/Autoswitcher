@@ -7,6 +7,11 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
 import java.awt.image.RasterFormatException;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import autoswitcher.switcher.SwitchItem;
 import autoswitcher.ui.OverlayScreen;
 
@@ -54,17 +59,13 @@ public class ItemScanner implements Runnable {
 	 * @return
 	 */
 	private boolean imageOnScreen(BufferedImage screen) {
-		int pixels = screen.getHeight() * screen.getWidth();
 		BufferedImage sprite = item.getSprite();
-		for (int i = 0; i < pixels; i++) {
-			try {
-				if (checkItem(screen.getSubimage(i % sprite.getWidth(), i / sprite.getWidth(), sprite.getWidth(), sprite.getHeight()))) {
+		for(int y = 0; y < screen.getHeight() - sprite.getHeight();y++){
+			for(int x = 0; x < screen.getWidth() - sprite.getWidth();x++){
+				if (checkItem(screen.getSubimage(x, y, sprite.getWidth(), sprite.getHeight()))) {
 					return true;
 				}
-			} catch (RasterFormatException e) {
-
 			}
-
 		}
 		return false;
 	}
@@ -104,6 +105,19 @@ public class ItemScanner implements Runnable {
 		}
 		return (neededCorrectPixels * 0.6 < correctPixels);
 
+	}
+	
+	private void makePicture(BufferedImage img, String name) {
+		File outputfile = new File("C:/Users/No/Desktop/" + name + ".png");
+		try {
+			if (img != null) {
+				ImageIO.write(img, "png", outputfile);
+			} else {
+				System.out.println("nulled");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
