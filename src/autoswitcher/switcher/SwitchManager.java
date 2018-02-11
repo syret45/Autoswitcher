@@ -23,22 +23,30 @@ public class SwitchManager {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * adds a switch to the switchmanager
-	 * @param fullswitch - the switch
+	 * 
+	 * @param fullswitch
+	 *            - the switch
 	 */
-	public void addSwitch(FullSwitch fullswitch){
+	public void addSwitch(FullSwitch fullswitch) {
 		switches.add(fullswitch);
+		System.out.println("Added a new switch:");
+		for (SwitchItem item : fullswitch.getItems()) {
+			System.out.println(item.getItemName());
+		}
 	}
 
 	/**
 	 * tries all the switches and does them
-	 * @param mouseClick - point of the mouseclick
+	 * 
+	 * @param mouseClick
+	 *            - point of the mouseclick
 	 */
-	public void trySwitch(Point mouseClick,boolean returnMouse) {
+	public void trySwitch(Point mouseClick, boolean returnMouse) {
 		Point oldmouse = MouseInfo.getPointerInfo().getLocation();
-		
+
 		for (FullSwitch fullSwitch : switches) {
 			if (fullSwitch.checkActive(mouseClick)) {
 				fullSwitch.doSwitch();

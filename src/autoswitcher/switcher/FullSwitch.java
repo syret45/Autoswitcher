@@ -13,8 +13,14 @@ public class FullSwitch {
 	OverlayScreen screen = OverlayScreen.getInstance();
 
 	public void addItem(SwitchItem item) {
-		items.add(item);
-		ItemFinder.getInstance().addItem(item);
+		if (!item.equals(SwitchItem.Empty)) {
+			items.add(item);
+			ItemFinder.getInstance().addItem(item);
+		}
+	}
+	
+	public ArrayList<SwitchItem> getItems(){
+		return items;
 	}
 
 	/**

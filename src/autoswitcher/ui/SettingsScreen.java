@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,7 +27,7 @@ import autoswitcher.ouput.OutputManager;
  */
 public class SettingsScreen extends JFrame {
 
-	private Dimension ScreenSize = new Dimension(300, 300);
+	private Dimension ScreenSize = new Dimension(200, 350);
 	private String Title = "OSRS autoSwitcher";
 	private JTextField mouseMedField, mouseGausField;
 	private InputManager manager = InputManager.getInstance();
@@ -176,10 +177,26 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(AutoSwitchButton);
+		
+		JButton newSwitchButton = new JButton("Add new switch");
+		newSwitchButton.setBounds(20, 260, 150, 20);
+		newSwitchButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new AddSwitchScreen();
+			}
+		});
+		panel.add(newSwitchButton);
 
 		add(panel);
 	}
 
+	/**
+	 * sets the speed of the mouse movement
+	 * @param med - the medium of the movetime
+	 * @param gaus - the gausian of the movetime
+	 */
 	private void setMouseSpeed(int med, int gaus) {
 		OutputManager.getInstance().setMouseSpeed(med, gaus);
 	}

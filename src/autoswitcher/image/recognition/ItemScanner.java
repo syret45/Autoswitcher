@@ -6,12 +6,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
-import java.awt.image.RasterFormatException;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import autoswitcher.switcher.SwitchItem;
 import autoswitcher.ui.OverlayScreen;
 
@@ -35,7 +29,7 @@ public class ItemScanner implements Runnable {
 		Point screenloc = OverlayScreen.getInstance().getLocation();
 		boolean found = false;
 		// get image from screen
-		for (int y = 0; y < 7 && !found; y++) {
+		for (int y = 0; y < 3 && !found; y++) {
 			for (int x = 0; x < 4 && !found; x++) {
 				BufferedImage screen = r.createScreenCapture(new Rectangle(screenloc.x + x * 43, screenloc.y + y * 36, 43, 36));
 				if (imageOnScreen(screen)) {

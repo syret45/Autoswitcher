@@ -2,6 +2,7 @@ package autoswitcher.switcher;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -47,9 +48,17 @@ public class SwitchItem {
 	public SwitchItem(String itemName, String spritePath) {
 		this.itemName = itemName;
 		sprite = setSprite(spritePath);
+		allItems.add(this);
+		allItemNames.add(itemName);
 	}
 
-	
+	//all items in static below
+	public static ArrayList<SwitchItem> allItems = new ArrayList<>();
+	public static ArrayList<String> allItemNames = new ArrayList<>();
+	//items
+ 	public static SwitchItem Empty = new SwitchItem("", "");
+ 	public static SwitchItem Black_Dhide_Body = new SwitchItem("black d'hide body", "Black_d'hide_body.png");
+ 	public static SwitchItem Rune_Platelegs = new SwitchItem("rune platelegs", "Rune_platelegs.png");
 
 
 }

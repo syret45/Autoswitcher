@@ -1,9 +1,6 @@
 import java.awt.AWTException;
 import java.io.IOException;
 
-import autoswitcher.switcher.FullSwitch;
-import autoswitcher.switcher.SwitchItem;
-import autoswitcher.switcher.SwitchManager;
 import autoswitcher.ui.OverlayScreen;
 import autoswitcher.ui.SettingsScreen;
 

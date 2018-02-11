@@ -40,10 +40,19 @@ public class OverlayScreen extends JWindow implements MouseMotionListener {
 		//draw inv
 		g.setColor(Color.green);
 		
+	    g.drawRect(0, 0, 10, 10);
+	    g.fillRect(0, 0, 10, 10);
+	    
+	    for(int y = 0; y < 3; y++){
+	    	for(int x = 0 ; x < 4 ; x++){
+	    		g.drawRect(x * 43, y * 36, 43, 36);
+	    	}
+	    }
+	    /*
 		int i;
 		int width = 175;
 	    int height = 250;
-	    int rows = 7;
+	    int rows = 3;
 	    int cols = 4;
 	    
 	    // draw the rows
@@ -54,9 +63,7 @@ public class OverlayScreen extends JWindow implements MouseMotionListener {
 	    // draw the columns
 	    int rowWid = 43;//width / (cols);
 	    for (i = 0; i <= cols; i++)
-	      g.drawLine(i * rowWid, 0, i * rowWid, height);
-	    g.drawRect(0, 0, 10, 10);
-	    g.fillRect(0, 0, 10, 10);
+	      g.drawLine(i * rowWid, 0, i * rowWid, height);*/
 	}
 
 	@Override
