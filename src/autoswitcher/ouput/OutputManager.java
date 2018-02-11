@@ -17,6 +17,8 @@ import java.util.Random;
 public class OutputManager extends Robot {
 
 	private static OutputManager instance;
+	private int mouseSpeedMedMs = 100;
+	private int mouseSpeedGaus = 10;
 	private Random random;
 
 	private OutputManager() throws AWTException {
@@ -30,9 +32,13 @@ public class OutputManager extends Robot {
 	 * @return {@link outputManager}
 	 * @throws AWTException
 	 */
-	public static OutputManager getInstance() throws AWTException {
+	public static OutputManager getInstance() {
 		if (instance == null) {
-			instance = new OutputManager();
+			try {
+				instance = new OutputManager();
+			} catch (AWTException e) {
+				e.printStackTrace();
+			}
 		}
 		return instance;
 	}
@@ -43,12 +49,10 @@ public class OutputManager extends Robot {
 	 * 
 	 * @param movePoint
 	 *            - the point to move the mouse to
-	 * @param timeToMoveInMs
-	 *            - The time the movement of the mouse should take
 	 * @param movementType
 	 *            -{@link MovementType} for the desired movementype
 	 */
-	public void moveMouseNormal(Point movePoint, int timeToMoveInMs, MovementType movementType) {
+	public void moveMouseNormal(Point movePoint, MovementType movementType) {
 		Point oldMousePosition = MouseInfo.getPointerInfo().getLocation();
 		long startSystemTime = System.currentTimeMillis();
 		// calculates the distance between the points
@@ -56,6 +60,7 @@ public class OutputManager extends Robot {
 		double xdiff = (movePoint.x - oldMousePosition.x) / distance;
 		double ydiff = (movePoint.y - oldMousePosition.y) / distance;
 		int movementDeviation = (int) (Math.abs(random.nextGaussian() * 20) - 10);
+		int timeToMoveInMs = mouseSpeedMedMs + (int) random.nextGaussian() * mouseSpeedGaus;
 		// gets the movementType
 		if (movementType == MovementType.random) {
 			switch (random.nextInt(2)) {
@@ -99,6 +104,11 @@ public class OutputManager extends Robot {
 		}
 		// this last mousemove is to make sure it goes to the right place
 		mouseMove(movePoint.x, movePoint.y);
+	}
+	
+	public void setMouseSpeed(int medMS , int gaus){
+		mouseSpeedMedMs = medMS;
+		mouseSpeedGaus = gaus;
 	}
 
 	/**
