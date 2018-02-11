@@ -122,8 +122,19 @@ public class SettingsScreen extends JFrame {
 		});
 		panel.add(movementTypeBox);
 
+		JRadioButton noOverlayButton = new JRadioButton("Hide overlay");
+		noOverlayButton.setBounds(20, 110, 200, 20);
+		noOverlayButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				OverlayScreen.getInstance().setVisible((!noOverlayButton.isSelected()));
+			}
+		});
+		panel.add(noOverlayButton);
+
 		JRadioButton noDragButton = new JRadioButton("No drag");
-		noDragButton.setBounds(20, 110, 200, 20);
+		noDragButton.setBounds(20, 140, 200, 20);
 		noDragButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -134,7 +145,7 @@ public class SettingsScreen extends JFrame {
 		panel.add(noDragButton);
 
 		JRadioButton returnMouseButton = new JRadioButton("return mouse");
-		returnMouseButton.setBounds(20, 140, 200, 20);
+		returnMouseButton.setBounds(20, 170, 200, 20);
 		returnMouseButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -145,7 +156,7 @@ public class SettingsScreen extends JFrame {
 		panel.add(returnMouseButton);
 
 		JRadioButton f4Button = new JRadioButton("f4 barrage");
-		f4Button.setBounds(20, 170, 200, 20);
+		f4Button.setBounds(20, 200, 200, 20);
 		f4Button.addActionListener(new ActionListener() {
 
 			@Override

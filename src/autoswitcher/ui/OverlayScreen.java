@@ -7,10 +7,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JWindow;
 
+import autoswitcher.input.InputManager;
+
 
 public class OverlayScreen extends JWindow implements MouseMotionListener {
 
 	private static final long serialVersionUID = 1L;
+	private static OverlayScreen instance;
 	private int mx, my;
 
 	public OverlayScreen() {
@@ -21,8 +24,16 @@ public class OverlayScreen extends JWindow implements MouseMotionListener {
 		setAlwaysOnTop(true);
 		addMouseMotionListener(this);
 		repaint();
+		instance = this;
 	}
 
+	public static OverlayScreen getInstance(){
+		if(instance == null){
+			instance = new OverlayScreen();;
+		}
+		return instance;
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -55,6 +66,7 @@ public class OverlayScreen extends JWindow implements MouseMotionListener {
 		p.y += e.getYOnScreen() - my;
 		mx = e.getXOnScreen();
 		my = e.getYOnScreen();
+		InputManager.overLayLocation = p;
 		this.setLocation(p);
 	}
 

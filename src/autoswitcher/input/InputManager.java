@@ -29,6 +29,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private SwitchManager switchManager = SwitchManager.getInstance();
 	private OutputManager outputManager = OutputManager.getInstance();
 	// options
+	public static Point overLayLocation;
 	private static boolean returnMouse = false;
 	private static boolean noDrag = false;
 	private static boolean f4Barrage = false;
@@ -61,12 +62,12 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	public void setNoDrag(boolean active) {
 		noDrag = active;
 	}
-	
-	public void setF4Barrage(boolean active){
+
+	public void setF4Barrage(boolean active) {
 		f4Barrage = active;
 	}
-	
-	public void setReturnMouse(boolean active){
+
+	public void setReturnMouse(boolean active) {
 		returnMouse = active;
 	}
 
@@ -88,7 +89,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) {
-		if(f4Barrage && e.getKeyCode() == NativeKeyEvent.VC_F4){
+		if (f4Barrage && e.getKeyCode() == NativeKeyEvent.VC_F4) {
 			dof4Barrage();
 		}
 
@@ -132,7 +133,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 			outputManager.fastleftRelease();
 		}
 	}
-	
+
 	/**
 	 * clicks on the barrage when you click f4
 	 */
@@ -141,7 +142,10 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 		if(returnMouse){
 			oldMouse = MouseInfo.getPointerInfo().getLocation();
 		}
-		outputManager.moveMouseNormal(new Point(500, 500));
+		int barX =(int)( Math.random() * 15) + 13 + overLayLocation.x;
+		int barY =(int)( Math.random() * 15) + 173 + overLayLocation.y;
+		outputManager.moveMouseNormal(new Point(barX, barY));
+		outputManager.leftClickNormal();
 		if(oldMouse != null){
 			outputManager.moveMouseNormal(oldMouse);
 		}
