@@ -1,5 +1,7 @@
 package autoswitcher.image.recognition;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,10 +16,6 @@ import java.util.List;
  */
 public class ProcessFinder {
 	private String OSBuddyProcess = "OSBuddy";
-
-	// Get all processes
-
-	// Find client process
 
 	// Get OSBuddy Resolution
 
@@ -62,4 +60,11 @@ public class ProcessFinder {
 		}
 		return 0;
 	}
+	
+	private void GetScreenResolution() {
+		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+	    short width = (short) size.getWidth();
+	    short height = (short) size.getHeight();
+	}
+	
 }
