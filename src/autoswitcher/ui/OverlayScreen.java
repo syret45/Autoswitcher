@@ -47,12 +47,12 @@ public class OverlayScreen extends JWindow implements MouseMotionListener {
 	    int cols = 4;
 	    
 	    // draw the rows
-	    int rowHt = height / (rows);
+	    int rowHt = 36;// height / (rows);
 	    for (i = 0; i <= rows; i++)
 	      g.drawLine(0, i * rowHt, width, i * rowHt);
 
 	    // draw the columns
-	    int rowWid = width / (cols);
+	    int rowWid = 43;//width / (cols);
 	    for (i = 0; i <= cols; i++)
 	      g.drawLine(i * rowWid, 0, i * rowWid, height);
 	    g.drawRect(0, 0, 10, 10);

@@ -14,8 +14,9 @@ public class Main {
 		new SettingsScreen();
 		new OverlayScreen();
 		FullSwitch s = new FullSwitch();
-		s.addItem(new SwitchItem("dragon axe","Dragon_axe.png"));
-		s.addItem(new SwitchItem("bruma root","Bruma_root.png"));
+		s.addItem(new SwitchItem("black dhide body","Black_d'hide_body.png"));
+		s.addItem(new SwitchItem("rune platelegs","Rune_platelegs.png"));
+		s.addItem(new SwitchItem("avas accumulator","Avas_Accumulator.png"));
 		SwitchManager.getInstance().addSwitch(s);
 	}
 }
