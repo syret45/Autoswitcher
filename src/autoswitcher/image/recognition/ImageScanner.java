@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 public class ImageScanner {
 	public static void main(String[] args) throws HeadlessException, AWTException {
         try {
-               BufferedImage dragonAxeImage = ImageIO.read(ImageScanner.class.getResourceAsStream("/autoswitcher/resources/" + "Dragon_axe.png"));
+               BufferedImage dragonAxeImage = ImageIO.read(ImageScanner.class.getResourceAsStream("/autoswitcher/resources/" + "Bruma_root.png"));
                boolean isOnScreen = isOnScreen(dragonAxeImage);
                System.out.print(isOnScreen);
             } catch (IOException e) {
@@ -23,8 +23,13 @@ public class ImageScanner {
     }
 	
     private static boolean isOnScreen(BufferedImage bi) throws IOException, HeadlessException, AWTException{
-    	BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-		ImageIO.write(image, "png", new File("/screenshot.png"));
+    	Robot robot = new Robot();
+        String format = "jpg";
+        String fileName = "FullScreenshot." + format;
+         
+        Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+        BufferedImage image = robot.createScreenCapture(screenRect);
+        ImageIO.write(image, format, new File(fileName));
                
         for(int x = 0; x< image.getWidth();x++){
             for(int y = 0; y< image.getHeight();y++){
