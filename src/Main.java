@@ -14,10 +14,8 @@ public class Main {
 		new SettingsScreen();
 		new OverlayScreen();
 		FullSwitch s = new FullSwitch();
-		s.addItem(new SwitchItem(0));
-		s.addItem(new SwitchItem(1));
-		s.addItem(new SwitchItem(2));
-		s.addItem(new SwitchItem(3));
+		s.addItem(new SwitchItem("dragon axe","Dragon_axe.png"));
+		s.addItem(new SwitchItem("bruma root","Bruma_root.png"));
 		SwitchManager.getInstance().addSwitch(s);
 	}
 }

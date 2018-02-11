@@ -3,12 +3,15 @@ package autoswitcher.switcher;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import autoswitcher.image.recognition.ItemFinder;
+
 public class FullSwitch {
 	
 	private ArrayList<SwitchItem> items = new ArrayList<>();
 	
 	public void addItem(SwitchItem item){
 		items.add(item);
+		ItemFinder.getInstance().addItem(item);
 	}
 	
 	/**
