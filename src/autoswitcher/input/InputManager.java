@@ -79,7 +79,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	@Override
 	public void nativeMouseClicked(NativeMouseEvent e) {
 		if (autoSwitch && e.getButton() == NativeMouseEvent.BUTTON1) {
-			switchManager.trySwitch(e.getPoint(),returnMouse);
+			switchManager.trySwitch(e.getPoint(), returnMouse);
 		}
 	}
 
@@ -137,7 +137,9 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private void doNoDrag(NativeMouseEvent e) {
 		// TODO checks for when to nodrag
 		if (e.getModifiers() == 256) {
-			outputManager.fastleftRelease();
+			if (overLayLocation.x <= e.getX() && overLayLocation.x + 4 * 43 >= e.getX() && overLayLocation.y <= e.getY() && overLayLocation.y + 3 * 36 >= e.getY()) {
+				outputManager.fastleftRelease();
+			}
 		}
 	}
 

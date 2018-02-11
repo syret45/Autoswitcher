@@ -34,7 +34,7 @@ public class ItemFinder implements Runnable{
 				for (SwitchItem item : items) {
 					new Thread(new ItemScanner(item)).start();
 				}
-				Thread.sleep(300);
+				Thread.sleep(600);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

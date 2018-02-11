@@ -58,7 +58,7 @@ public class OutputManager extends Robot {
 		double distance = oldMousePosition.distance(movePoint);
 		double xdiff = (movePoint.x - oldMousePosition.x) / distance;
 		double ydiff = (movePoint.y - oldMousePosition.y) / distance;
-		int movementDeviation = (int) (Math.abs(random.nextGaussian() * 25) - 10);
+		int movementDeviation = (int) (Math.abs(random.nextGaussian() * mouseSpeedGaus));
 		int timeToMoveInMs = mouseSpeedMedMs + (int)(random.nextGaussian() * mouseSpeedGaus);
 		MovementType tempMove = movementType;
 		// gets the movementType
