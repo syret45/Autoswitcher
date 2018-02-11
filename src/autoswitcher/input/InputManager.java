@@ -14,6 +14,7 @@ import org.jnativehook.mouse.NativeMouseListener;
 import org.jnativehook.mouse.NativeMouseMotionListener;
 
 import autoswitcher.ouput.OutputManager;
+import autoswitcher.switcher.SwitchManager;
 
 /**
  * this will get the input from the player and decides what to do with it<br>
@@ -25,6 +26,8 @@ import autoswitcher.ouput.OutputManager;
 public class InputManager implements NativeMouseListener, NativeMouseMotionListener, NativeKeyListener {
 
 	private static InputManager instance;
+	private SwitchManager switchManager = SwitchManager.getInstance();
+	private OutputManager outputManager = OutputManager.getInstance();
 	// options
 	private static boolean returnMouse = false;
 	private static boolean noDrag = false;
@@ -68,9 +71,8 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	}
 
 	@Override
-	public void nativeMouseClicked(NativeMouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void nativeMouseClicked(NativeMouseEvent e) {
+		switchManager.trySwitch(e.getPoint());
 	}
 
 	@Override
@@ -127,7 +129,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private void doNoDrag(NativeMouseEvent e) {
 		// TODO checks for when to nodrag
 		if (e.getModifiers() == 256) {
-			OutputManager.getInstance().fastleftRelease();
+			outputManager.fastleftRelease();
 		}
 	}
 	
@@ -139,9 +141,9 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 		if(returnMouse){
 			oldMouse = MouseInfo.getPointerInfo().getLocation();
 		}
-		OutputManager.getInstance().moveMouseNormal(new Point(500, 500));
+		outputManager.moveMouseNormal(new Point(500, 500));
 		if(oldMouse != null){
-			OutputManager.getInstance().moveMouseNormal(oldMouse);
+			outputManager.moveMouseNormal(oldMouse);
 		}
 	}
 
