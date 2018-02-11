@@ -59,6 +59,7 @@ public class SwitchItem {
  	public static SwitchItem Empty = new SwitchItem("", "");
  	public static SwitchItem Black_Dhide_Body = new SwitchItem("black d'hide body", "Black_d'hide_body.png");
  	public static SwitchItem Rune_Platelegs = new SwitchItem("rune platelegs", "Rune_platelegs.png");
+ 	public static SwitchItem Avas_Accumulator = new SwitchItem("Avas accumulator", "Avas_Accumulator.png");
 
 
 }
