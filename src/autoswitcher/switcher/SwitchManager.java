@@ -1,7 +1,10 @@
 package autoswitcher.switcher;
 
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
+
+import autoswitcher.ouput.OutputManager;
 
 public class SwitchManager {
 
@@ -33,13 +36,17 @@ public class SwitchManager {
 	 * tries all the switches and does them
 	 * @param mouseClick - point of the mouseclick
 	 */
-	public void trySwitch(Point mouseClick) {
-		System.out.println("trying switch");
+	public void trySwitch(Point mouseClick,boolean returnMouse) {
+		Point oldmouse = MouseInfo.getPointerInfo().getLocation();
+		
 		for (FullSwitch fullSwitch : switches) {
 			if (fullSwitch.checkActive(mouseClick)) {
 				fullSwitch.doSwitch();
 				break;
 			}
+		}
+		if (returnMouse) {
+			OutputManager.getInstance().moveMouseNormal(oldmouse);
 		}
 	}
 

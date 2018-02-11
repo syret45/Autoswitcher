@@ -78,8 +78,8 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 
 	@Override
 	public void nativeMouseClicked(NativeMouseEvent e) {
-		if (autoSwitch) {
-			switchManager.trySwitch(e.getPoint());
+		if (autoSwitch && e.getButton() == NativeMouseEvent.BUTTON1) {
+			switchManager.trySwitch(e.getPoint(),returnMouse);
 		}
 	}
 

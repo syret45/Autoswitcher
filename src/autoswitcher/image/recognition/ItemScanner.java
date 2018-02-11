@@ -36,6 +36,7 @@ public class ItemScanner implements Runnable {
 				if (imageOnScreen(screen)) {
 					item.setPos(x + y * 4);
 					System.out.println("found " + item.getItemName() + " x:" + x + " y:" + y);
+					found = true;
 				}
 			}
 		}
@@ -81,27 +82,27 @@ public class ItemScanner implements Runnable {
 		for (int i = 0; i < pixels; i++) {
 			int x = i % sprite.getWidth();
 			int y = i / sprite.getWidth();
-			
-			//screenportion rgbs
+
+			// screenportion rgbs
 			Color S = new Color(screenportion.getRGB(x, y));
 			int SR = S.getRed();
 			int SG = S.getGreen();
 			int SB = S.getBlue();
-			//image rgbs
+			// image rgbs
 			Color I = new Color(sprite.getRGB(x, y));
 			int IR = I.getRed();
 			int IG = I.getGreen();
 			int IB = I.getBlue();
-			//comparing
-			if(I.getRGB() == 16777215){
+			// comparing
+			if (I.getRGB() == 16777215) {
 				neededCorrectPixels--;
-			}else{
-				if(SR >= IR - pixelCorrection && SR <= IR + pixelCorrection && SG >= IG - pixelCorrection && SG <= IG + pixelCorrection && SB >= IB - pixelCorrection && SB <= IB + pixelCorrection){
+			} else {
+				if (SR >= IR - pixelCorrection && SR <= IR + pixelCorrection && SG >= IG - pixelCorrection && SG <= IG + pixelCorrection && SB >= IB - pixelCorrection && SB <= IB + pixelCorrection) {
 					correctPixels++;
 				}
 			}
 		}
-		return (neededCorrectPixels * 0.7 < correctPixels);
+		return (neededCorrectPixels * 0.6 < correctPixels);
 
 	}
 
