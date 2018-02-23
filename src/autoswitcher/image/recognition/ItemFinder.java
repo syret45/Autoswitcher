@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import autoswitcher.switcher.SwitchItem;
 
-public class ItemFinder implements Runnable{
-	
+public class ItemFinder implements Runnable {
+
 	private static ItemFinder instance;
 
 	private ArrayList<SwitchItem> items = new ArrayList<>();
@@ -22,17 +22,19 @@ public class ItemFinder implements Runnable{
 		}
 		return instance;
 	}
-	
-	public void addItem(SwitchItem item){
+
+	public void addItem(SwitchItem item) {
 		items.add(item);
 	}
 
 	@Override
 	public void run() {
-		while(true){
+		while (true) {
 			try {
 				for (SwitchItem item : items) {
-					new Thread(new ItemScanner(item)).start();
+					if (!item.getHardPos()) {
+						new Thread(new ItemScanner(item)).start();
+					}
 				}
 				Thread.sleep(600);
 			} catch (InterruptedException e) {
