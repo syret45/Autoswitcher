@@ -27,7 +27,7 @@ import autoswitcher.ouput.OutputManager;
  */
 public class SettingsScreen extends JFrame {
 
-	private Dimension ScreenSize = new Dimension(200, 350);
+	private Dimension ScreenSize = new Dimension(300, 350);
 	private String Title = "OSRS autoSwitcher";
 	private JTextField mouseMedField, mouseGausField;
 	private InputManager manager = InputManager.getInstance();
@@ -110,6 +110,62 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(mouseGausField);
+		
+		JTextField gridHeight = new JTextField("3");
+		gridHeight.setToolTipText("the height of the grid in the overlay");
+		gridHeight.setBounds(150, 20, 100, 20);
+		gridHeight.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try {
+					InputManager.gridHeight = Integer.parseInt(gridHeight.getText());
+					OverlayScreen.getInstance().repaint();
+				} catch (Exception e1) {
+					System.out.println("oops");
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		panel.add(gridHeight);
+		
+		JTextField gridWidth = new JTextField("4");
+		gridWidth.setToolTipText("the width of the grid in the overlay");
+		gridWidth.setBounds(150, 50, 100, 20);
+		gridWidth.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try {
+					InputManager.gridWidth = Integer.parseInt(gridWidth.getText());
+					OverlayScreen.getInstance().repaint();
+				} catch (Exception e1) {
+					System.out.println("oops");
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		panel.add(gridWidth);
 
 		JComboBox<MovementType> movementTypeBox = new JComboBox<>(MovementType.values());
 		movementTypeBox.setBounds(20, 80, 100, 20);

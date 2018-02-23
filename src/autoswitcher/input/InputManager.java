@@ -30,7 +30,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private OutputManager outputManager = OutputManager.getInstance();
 	// options
 	public static Point overLayLocation;
-	public static int gridWidth = 2;
+	public static int gridWidth = 4;
 	public static int gridHeight = 3;
 	private static boolean returnMouse = false;
 	private static boolean noDrag = false;

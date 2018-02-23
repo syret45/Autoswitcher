@@ -18,7 +18,7 @@ public class OverlayScreen extends JWindow implements MouseMotionListener {
 
 	public OverlayScreen() {
 		// setGraphics();
-		setSize(300,300);
+		setSize(500,500);
 		setBackground(new Color(0, 255, 0, 0));
 		setVisible(true);
 		setAlwaysOnTop(true);
