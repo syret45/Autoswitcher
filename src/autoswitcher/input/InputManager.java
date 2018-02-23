@@ -30,6 +30,8 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private OutputManager outputManager = OutputManager.getInstance();
 	// options
 	public static Point overLayLocation;
+	public static int gridWidth = 2;
+	public static int gridHeight = 3;
 	private static boolean returnMouse = false;
 	private static boolean noDrag = false;
 	private static boolean f4Barrage = false;
@@ -137,7 +139,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private void doNoDrag(NativeMouseEvent e) {
 		// TODO checks for when to nodrag
 		if (e.getModifiers() == 256) {
-			if (overLayLocation.x <= e.getX() && overLayLocation.x + 4 * 43 >= e.getX() && overLayLocation.y <= e.getY() && overLayLocation.y + 3 * 36 >= e.getY()) {
+			if (overLayLocation.x <= e.getX() && overLayLocation.x + gridWidth * 43 >= e.getX() && overLayLocation.y <= e.getY() && overLayLocation.y + gridHeight * 36 >= e.getY()) {
 				outputManager.fastleftRelease();
 			}
 		}

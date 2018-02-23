@@ -43,8 +43,9 @@ public class OverlayScreen extends JWindow implements MouseMotionListener {
 	    g.drawRect(0, 0, 10, 10);
 	    g.fillRect(0, 0, 10, 10);
 	    
-	    for(int y = 0; y < 3; y++){
-	    	for(int x = 0 ; x < 4 ; x++){
+	    InputManager.getInstance();
+		for(int y = 0; y < InputManager.gridHeight; y++){
+	    	for(int x = 0 ; x < InputManager.gridWidth ; x++){
 	    		g.drawRect(x * 43, y * 36, 43, 36);
 	    	}
 	    }

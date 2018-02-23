@@ -6,6 +6,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
+
+import autoswitcher.input.InputManager;
 import autoswitcher.switcher.SwitchItem;
 import autoswitcher.ui.OverlayScreen;
 
@@ -29,8 +31,8 @@ public class ItemScanner implements Runnable {
 		Point screenloc = OverlayScreen.getInstance().getLocation();
 		boolean found = false;
 		// get image from screen
-		for (int y = 0; y < 3 && !found; y++) {
-			for (int x = 0; x < 4 && !found; x++) {
+		for (int y = 0; y < InputManager.gridHeight && !found; y++) {
+			for (int x = 0; x < InputManager.gridWidth && !found; x++) {
 				BufferedImage screen = r.createScreenCapture(new Rectangle(screenloc.x + x * 43, screenloc.y + y * 36, 43, 36));
 				if (imageOnScreen(screen)) {
 					item.setPos(x + y * 4);
