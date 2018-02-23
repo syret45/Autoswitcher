@@ -32,6 +32,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	public static Point overLayLocation;
 	public static int gridWidth = 4;
 	public static int gridHeight = 3;
+	private static boolean tempNoDragDisable = false;
 	private static boolean returnMouse = false;
 	private static boolean noDrag = false;
 	private static boolean f4Barrage = false;
@@ -101,13 +102,17 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 		if (f4Barrage && e.getKeyCode() == NativeKeyEvent.VC_F4) {
 			dof4Barrage();
 		}
+		if(noDrag && e.getKeyCode() == NativeKeyEvent.VC_F6) {
+			tempNoDragDisable = true;
+		}
 
 	}
 
 	@Override
-	public void nativeKeyReleased(NativeKeyEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void nativeKeyReleased(NativeKeyEvent e) {
+		if(noDrag && e.getKeyCode() == NativeKeyEvent.VC_F6) {
+			tempNoDragDisable = false;
+		}
 	}
 
 	@Override
@@ -118,7 +123,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 
 	@Override
 	public void nativeMouseDragged(NativeMouseEvent e) {
-		if (noDrag) {
+		if (noDrag && !tempNoDragDisable) {
 			doNoDrag(e);
 		}
 	}

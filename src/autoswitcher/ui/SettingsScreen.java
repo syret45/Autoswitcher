@@ -190,7 +190,7 @@ public class SettingsScreen extends JFrame {
 		});
 		panel.add(noOverlayButton);
 
-		JRadioButton noDragButton = new JRadioButton("No drag");
+		JRadioButton noDragButton = new JRadioButton("No drag (f6 to temp disable)");
 		noDragButton.setBounds(20, 140, 200, 20);
 		noDragButton.addActionListener(new ActionListener() {
 
