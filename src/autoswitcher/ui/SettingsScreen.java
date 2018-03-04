@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import autoswitcher.input.InputManager;
 import autoswitcher.ouput.MovementType;
 import autoswitcher.ouput.OutputManager;
+import autoswitcher.switcher.SwitchManager;
 
 @SuppressWarnings("serial")
 /**
@@ -244,6 +245,17 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(newSwitchButton);
+		
+		JButton DeleteSwitchButton = new JButton("Delete all switches");
+		DeleteSwitchButton.setBounds(20, 290, 150, 20);
+		DeleteSwitchButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				SwitchManager.getInstance().DeleteAllSwitches();
+			}
+		});
+		panel.add(DeleteSwitchButton);
 
 		add(panel);
 	}

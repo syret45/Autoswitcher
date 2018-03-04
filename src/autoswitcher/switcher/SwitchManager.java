@@ -37,6 +37,14 @@ public class SwitchManager {
 			System.out.println(item.getItemName());
 		}
 	}
+	
+	/**
+	 * deletes all switches from the switchmanager
+	 * 
+	 */
+	public void DeleteAllSwitches() {
+		switches.clear();
+	}
 
 	/**
 	 * tries all the switches and does them
