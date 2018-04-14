@@ -28,7 +28,7 @@ import autoswitcher.switcher.SwitchManager;
  */
 public class SettingsScreen extends JFrame {
 
-	private Dimension ScreenSize = new Dimension(300, 350);
+	private Dimension ScreenSize = new Dimension(300, 400);
 	private String Title = "OSRS autoSwitcher";
 	private JTextField mouseMedField, mouseGausField;
 	private InputManager manager = InputManager.getInstance();
