@@ -36,6 +36,7 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	private static boolean returnMouse = false;
 	private static boolean noDrag = false;
 	private static boolean f4Barrage = false;
+	private static boolean f4Blitz = false;
 	private static boolean autoSwitch = false;
 
 	private InputManager() {
@@ -70,6 +71,10 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	public void setF4Barrage(boolean active) {
 		f4Barrage = active;
 	}
+	
+	public void setF4Blitz(boolean active) {
+		f4Blitz = active;
+	}
 
 	public void setReturnMouse(boolean active) {
 		returnMouse = active;
@@ -101,6 +106,9 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		if (f4Barrage && e.getKeyCode() == NativeKeyEvent.VC_F4) {
 			dof4Barrage();
+		}
+		if (f4Blitz && e.getKeyCode() == NativeKeyEvent.VC_F4) {
+			dof4Blitz();
 		}
 		if(noDrag && e.getKeyCode() == NativeKeyEvent.VC_F6) {
 			tempNoDragDisable = true;
@@ -160,6 +168,23 @@ public class InputManager implements NativeMouseListener, NativeMouseMotionListe
 		}
 		int barX = (int) (Math.random() * 15) + 13 + overLayLocation.x;
 		int barY = (int) (Math.random() * 15) + 173 + overLayLocation.y;
+		outputManager.moveMouseNormal(new Point(barX, barY));
+		outputManager.leftClickNormal();
+		if (oldMouse != null) {
+			outputManager.moveMouseNormal(oldMouse);
+		}
+	}
+	
+	/**
+	 * clicks on the barrage when you click f4
+	 */
+	private void dof4Blitz() {
+		Point oldMouse = null;
+		if (returnMouse) {
+			oldMouse = MouseInfo.getPointerInfo().getLocation();
+		}
+		int barX = (int) (Math.random() * 8) + 57 + overLayLocation.x;
+		int barY = (int) (Math.random() * 12) + 118 + overLayLocation.y;
 		outputManager.moveMouseNormal(new Point(barX, barY));
 		outputManager.leftClickNormal();
 		if (oldMouse != null) {

@@ -111,7 +111,7 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(mouseGausField);
-		
+
 		JTextField gridHeight = new JTextField("3");
 		gridHeight.setToolTipText("the height of the grid in the overlay");
 		gridHeight.setBounds(150, 20, 100, 20);
@@ -139,7 +139,7 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(gridHeight);
-		
+
 		JTextField gridWidth = new JTextField("4");
 		gridWidth.setToolTipText("the width of the grid in the overlay");
 		gridWidth.setBounds(150, 50, 100, 20);
@@ -214,18 +214,37 @@ public class SettingsScreen extends JFrame {
 		panel.add(returnMouseButton);
 
 		JRadioButton f4Button = new JRadioButton("f4 barrage");
+		JRadioButton f4Buttonblitz = new JRadioButton("f4 blitz");
 		f4Button.setBounds(20, 200, 200, 20);
 		f4Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				manager.setF4Barrage(f4Button.isSelected());
+				manager.setF4Blitz(f4Buttonblitz.isSelected());
+				if(f4Button.isSelected()) {
+					f4Buttonblitz.setSelected(false);
+				}
 			}
 		});
 		panel.add(f4Button);
-		
+
+		f4Buttonblitz.setBounds(20, 230, 200, 20);
+		f4Buttonblitz.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				manager.setF4Barrage(f4Button.isSelected());
+				manager.setF4Blitz(f4Buttonblitz.isSelected());
+				if(f4Buttonblitz.isSelected()) {
+					f4Button.setSelected(false);
+				}
+			}
+		});
+		panel.add(f4Buttonblitz);
+
 		JRadioButton AutoSwitchButton = new JRadioButton("autoSwitch");
-		AutoSwitchButton.setBounds(20, 230, 200, 20);
+		AutoSwitchButton.setBounds(20, 260, 200, 20);
 		AutoSwitchButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -234,22 +253,22 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(AutoSwitchButton);
-		
+
 		JButton newSwitchButton = new JButton("Add new switch");
-		newSwitchButton.setBounds(20, 260, 150, 20);
+		newSwitchButton.setBounds(20, 290, 150, 20);
 		newSwitchButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				new AddSwitchScreen();
 			}
 		});
 		panel.add(newSwitchButton);
-		
+
 		JButton DeleteSwitchButton = new JButton("Delete all switches");
-		DeleteSwitchButton.setBounds(20, 290, 150, 20);
+		DeleteSwitchButton.setBounds(20, 320, 150, 20);
 		DeleteSwitchButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				SwitchManager.getInstance().DeleteAllSwitches();
@@ -262,8 +281,11 @@ public class SettingsScreen extends JFrame {
 
 	/**
 	 * sets the speed of the mouse movement
-	 * @param med - the medium of the movetime
-	 * @param gaus - the gausian of the movetime
+	 * 
+	 * @param med
+	 *            - the medium of the movetime
+	 * @param gaus
+	 *            - the gausian of the movetime
 	 */
 	private void setMouseSpeed(int med, int gaus) {
 		OutputManager.getInstance().setMouseSpeed(med, gaus);
