@@ -220,11 +220,11 @@ public class SettingsScreen extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				manager.setF4Barrage(f4Button.isSelected());
-				manager.setF4Blitz(f4Buttonblitz.isSelected());
-				if(f4Button.isSelected()) {
+				if (f4Button.isSelected()) {
 					f4Buttonblitz.setSelected(false);
 				}
+				manager.setF4Barrage(f4Button.isSelected());
+				manager.setF4Blitz(f4Buttonblitz.isSelected());
 			}
 		});
 		panel.add(f4Button);
@@ -234,11 +234,11 @@ public class SettingsScreen extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				manager.setF4Barrage(f4Button.isSelected());
-				manager.setF4Blitz(f4Buttonblitz.isSelected());
-				if(f4Buttonblitz.isSelected()) {
+				if (f4Buttonblitz.isSelected()) {
 					f4Button.setSelected(false);
 				}
+				manager.setF4Barrage(f4Button.isSelected());
+				manager.setF4Blitz(f4Buttonblitz.isSelected());
 			}
 		});
 		panel.add(f4Buttonblitz);
