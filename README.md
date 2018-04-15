@@ -15,6 +15,7 @@ Width of the grid (bottom right field) : width of the grid
 Hide overlay : hides the overlay so you cant click/drag or see it anymore  
 No drag : makes it so you cant drag with your mouse anymore within the grid (hold f6 to temporarily disable nodrag)  
 Return mouse : after a switch or f4 barrage your mouse will return to the old location  
+f4 blitz : when you press f4 to go to the spellbook tab it will move and click the mouse to the blitz spell (grid needs to start in topleft corner in inventory)  
 f4 barrage : when you press f4 to go to the spellbook tab it will move and click the mouse to the barrage spell (grid needs to start in topleft corner in inventory)  
 autoswitch : when you click on the first item in a switch it will do the whole switch  
 
