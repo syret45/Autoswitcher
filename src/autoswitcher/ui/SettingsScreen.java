@@ -28,7 +28,7 @@ import autoswitcher.switcher.SwitchManager;
  */
 public class SettingsScreen extends JFrame {
 
-	private Dimension ScreenSize = new Dimension(300, 400);
+	private Dimension ScreenSize = new Dimension(300, 430);
 	private String Title = "OSRS autoSwitcher";
 	private JTextField mouseMedField, mouseGausField;
 	private InputManager manager = InputManager.getInstance();
@@ -275,6 +275,10 @@ public class SettingsScreen extends JFrame {
 			}
 		});
 		panel.add(DeleteSwitchButton);
+		
+		FeedBackButton fbButton = new FeedBackButton();
+		fbButton.setBounds(20, 350, 100, 30);
+		panel.add(fbButton);
 
 		add(panel);
 	}
