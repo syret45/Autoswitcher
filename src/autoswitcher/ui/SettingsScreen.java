@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import autoswitcher.connection.Connector;
 import autoswitcher.input.InputManager;
 import autoswitcher.ouput.MovementType;
 import autoswitcher.ouput.OutputManager;
@@ -41,7 +42,7 @@ public class SettingsScreen extends JFrame {
 		setSize(ScreenSize);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle(Title);
+		setTitle(Title + " for "+  Connector.getInstance().username);
 		setResizable(false);
 		addComponents();
 		setVisible(true);

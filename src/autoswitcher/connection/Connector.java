@@ -1,11 +1,13 @@
 package autoswitcher.connection;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class Connector implements Runnable {
 
@@ -17,6 +19,7 @@ public class Connector implements Runnable {
 	public String username;
 
 	private Connector() {
+		username = getUser();
 		if (connectToServer()) {
 			new Thread(this).start();
 		} else {
@@ -111,5 +114,31 @@ public class Connector implements Runnable {
 		default:
 			break;
 		}
+	}
+
+	private String getUser() {
+		List<String> lines = readLinesFromTxtFile(new File(System.getProperty("user.home") + "/TTLauncher/Programs/Program/User.txt"));
+		if (lines.get(0) != null) {
+			return lines.get(0);
+		}
+		return null;
+	}
+
+	/**
+	 * reads all the lines from a txt file
+	 * 
+	 * @param file
+	 * @return
+	 */
+	public static List<String> readLinesFromTxtFile(File file) {
+		List<String> versionLines = null;
+		if (file.exists()) {
+			try {
+				versionLines = Files.readAllLines(file.toPath());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return versionLines;
 	}
 }
