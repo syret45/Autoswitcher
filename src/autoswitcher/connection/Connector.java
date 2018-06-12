@@ -36,7 +36,7 @@ public class Connector implements Runnable {
 
 	private boolean connectToServer() {
 		try {
-			socket = new Socket("84.25.19.170", 50000);
+			socket = new Socket("80.115.83.24", 50000);
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
 			for (Object object : nulledPackets) {

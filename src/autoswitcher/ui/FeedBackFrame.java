@@ -8,9 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import com.gmail.nomoonen.toxic.teamwork.packets.FeedBackPacket;
-
 import autoswitcher.connection.Connector;
+import toxic.teamwork.packets.FeedBackPacket;
 
 @SuppressWarnings("serial")
 public class FeedBackFrame extends JFrame {
