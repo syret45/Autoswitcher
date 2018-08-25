@@ -42,7 +42,7 @@ public class SettingsScreen extends JFrame {
 		setSize(ScreenSize);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle(Title + " for "+  Connector.getInstance().username);
+		//setTitle(Title + " for "+  Connector.getInstance().username);
 		setResizable(false);
 		addComponents();
 		setVisible(true);
